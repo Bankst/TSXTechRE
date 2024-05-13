@@ -6,29 +6,32 @@ Also Marked: GEX-7807 (Pioneer internal PN?)
 Mfg: Pioneer Corporation, Made In Thailand  
 Serial No Example: KHT009419US  
 
+Two boards comprise the unit, linked by 2 FFCs.  
+The "upper" board houses both external connectors, the main MCU, the XM module, and all power regulation.  
+The "lower" board houses a more powerful processor with off-board RAM and flash memory.
 ### Photos
 
 <details>
 <summary>Upper Board - Top Overview</summary>  
 <image src="images/acuralink/ALM_UpperBoard_Top1.bmp" alt="Upper Board Top Overview">
-</details><br>
+</details>
 
 <details>
 <summary>Upper Board - Bottom Overview</summary>  
 <image src="images/acuralink/ALM_UpperBoard_Bot1.bmp" alt="Upper Board Bottom Overview">
-</details><br>
+</details>
 
 <details>
 <summary>Lower Board - Top Overview</summary>  
 <image src="images/acuralink/ALM_LowerBoard_Top1.bmp" alt="Lower Board Top Overview">
-</details><br>
+</details>
 
 <details>
 <summary>XM Sub-Module</summary>  
 <image src="images/acuralink/ALM_XMModule_Chips.bmp" alt="XM Module Chips">
 </details>
 
-### Connectors
+### External Connectors
 #### Connector A
 Color: Grey  
 Pin Count: 32  
@@ -76,16 +79,35 @@ Pinout:
 | 2 (Outer) | Shield      |
 ### ICs
 #### Upper Board
-- Main IC: Renesas "MC32C" M30878FJAGP
-	- Marked as PEG701A8
-	- 32MHz 16/32-bit
+- Main MCU: Renesas "MC32C" M30878FJAGP
+	- 32MHz 16/32-bit ARM
 	- 248k RAM
 	- 512k FLASH
-	- 2x CAN 2.0B
+	- Notable Interfaces:
+		- 2x CAN 2.0B
 	- 144-pin LQFP
 	- [Datasheet](datasheets/Renesas_M32Series_MCU.pdf) (Originally named `REN_rej03b0127_32c87ds_DST_20080731.pdf`, [source](https://www.renesas.com/us/en/document/dst/m32c87-group-m32c87-m32c87a-m32c87b-datasheet?language=en))
+	- Notes
+		- Marked as PEG701A8 (Pioneer Electronics Group?)
+		- Not seen elsewhere in Honda/Acura devices
  - GA-NET Transceiver: Renesas HA12240FP
 	- IEBus actually but yeah
 	- [Datasheet](datasheets/Renesas_HA12240FP.pdf)
  - XM Receiver: MAX 2141 SDARS Receiver
 	- Seems identical to prior MAX2140 ([Datasheet](datasheets/Maxim_MAX2140.PDF))
+#### Lower Board
+ - Main MCU: Renesas "SH7760 Group" HD6417760BL200ADV
+	- 200MHz 32-bit RISC
+	- 2x 256MBit DRAM (Offboard)
+		- Samsung K4S561632J-UC75 ([Datasheet](datasheets/Samsung_K4S56_DRAM.pdf))
+	- 2x 256MBit Flash (Offboard)
+		- Spansion (Now Infineon) S99GL256NTB1 ([Closest Datasheet](datasheets/Infineon_S29GL_Flash.pdf))
+	- Notable Interfaces:
+		- 2x I2C 400Kbps
+		- SSI (Serial Sound Interface)
+		- 2x CAN 2.0B
+		- USB Host (1.1)
+	- [Datasheet](datasheets/Renesas_SH7760Series_MCU.pdf.pdf)
+	- Notes
+		- Marked as 64117760
+		- Seems to be used in LOTS of Honda/Acura smart modules
