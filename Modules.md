@@ -1,5 +1,111 @@
 # Modules
 
+## HandsFreeLink Unit
+Honda Part Number: 39770-TL2-A110-M1  
+Mfg: Johnson Controls Interiors  
+Model # / FCC ID: [CB2BLUEC08](https://fcc.report/FCC-ID/CB2BLUEC08)  
+Relevant FCC filing for older model: [CB2BLUEC05](https://fcc.report/FCC-ID/CB2BLUEC05)  
+
+A single PCBA comprises the unit, with one external connector.
+The PCBA houses the main MCU, the bluetooth transceiver, a DSP(?), an IEBus transceiver, and power regulation.  
+### Photos
+<details>
+<summary>Block Diagram</summary>  
+<image src="images/handsfreelink/HFL_Block_Diagram.png" alt="HFL Block Diagram">
+</details>
+
+<details>
+<summary>PCBA - Top Overview</summary>  
+<image src="images/handsfreelink/HFL_PCBA_Top1.bmp" alt="PCBA Top Overview">
+</details>
+
+<details>
+<summary>IC - IEBus</summary>  
+<image src="images/handsfreelink/HFL_IC_IEBus.bmp" alt="IEBus IC">
+</details>
+
+<details>
+<summary>IC - DSP(?)</summary>  
+<image src="images/handsfreelink/HFL_IC_DSP.bmp" alt="DSP IC">
+</details>
+
+<details>
+<summary>IC - BlueTooth</summary>  
+<image src="images/handsfreelink/HFL_IC_BT.bmp" alt="BlueTooth IC">
+</details>
+
+<details>
+<summary>IC - CAN</summary>  
+<image src="images/handsfreelink/HFL_IC_CAN.bmp" alt="CAN IC">
+</details>
+
+<details>
+<summary>IC - DRAM</summary>  
+<image src="images/handsfreelink/HFL_IC_DRAM.bmp" alt="DRAM IC">
+</details>
+
+<details>
+<summary>ICs - Misc</summary>  
+<image src="images/handsfreelink/HFL_ICs_Misc1.bmp" alt="Misc ICs - 1">
+<image src="images/handsfreelink/HFL_ICs_Misc2.bmp" alt="Misc ICs - 2">
+<image src="images/handsfreelink/HFL_ICs_Misc3.bmp" alt="Misc ICs - 3">
+</details>
+
+### Connector
+Color: Grey  
+Pin Count: 28  
+
+<details>
+<summary>FSM Pinout Image</summary>  
+<image src="images/handsfreelink/HFL_Connector.png" alt="FSM Pinout">
+</details><br>
+
+| Pin# | Color | Description      | Pin# | Color | Description       |
+|------|-------|------------------|------|-------|-------------------|
+| 1    | BLK   | Ground           | 15   | WHT   | Battery Power     |
+| 2    | PUR   | HFL Steering Sw  | 16   | PUR   | Accessory Power   |
+| 3    | PUR   | HFL Mute         | 17   | BLU   | B-CAN Low         |
+| 4    | RED   | GA-NET Bus +     | 18   | BLK   | B-CAN High        |
+| 5    | GRN   | GA-NET Bus -     | 19   | GRY*  | GA-NET Bus Shield |
+| 6    | WHT   | Navi Comm 4      | 20   | BLK   | Navi Comm 1       |
+| 7    | RED   | Navi Comm 3      | 21   | GRN   | Navi Comm 2       |
+| 8    | GRY*  | Navi Comm Shield | 22   | GRY*  | Audio Shield      |
+| 9    | GRN   | Audio Right +    | 23   | WHT   | Audio Right -     |
+| 10   | GRN   | Audio Left +     | 24   | RED   | Audio Left -      |
+| 11   | GRN   | Telm Sig +       | 25   | RED   | Telm Sig -        |
+| 12   | N/A   | Mic Sig Shield   | 26   | GRY*  | Telm Sig Shield   |
+| 13   | GRN   | Mic +            | 27   | GRN   | HFL Navi Mic +    |
+| 14   | WHT   | Mic -            | 28   | RED   | HFL Navi Mic -    |
+
+### ICs
+[comment]: <> (todo: move common IC to separate page?)
+ - Main MCU: Renesas "SH7760 Group" HD6417760BL200ADV
+	- 200MHz 32-bit RISC
+	- 1x 256MBit DRAM (Offboard)
+		- ISSI IS45S32800D-7TLA1 ([Datasheet](datasheets/ISSI_IS45S32800D_DRAM.pdf))
+	- 1x 256MBit Flash (Offboard)
+		- Spansion (Now Infineon) S99GL256NTB1 ([Closest Datasheet](datasheets/Infineon_S29GL_Flash.pdf))
+	- Notable Interfaces:
+		- 2x I2C 400Kbps
+		- SSI (Serial Sound Interface)
+		- 2x CAN 2.0B
+		- USB Host (1.1)
+	- [Datasheet](datasheets/Renesas_SH7760Series_MCU.pdf.pdf)
+	- Notes
+		- Marked as 64117760
+		- Seems to be used in LOTS of Honda/Acura smart modules
+ - BlueTooth Transceiver: Broadcom BCM2035MIFBG
+	- Bluetooth 1.1/1.2 😔
+	- PCM audio output
+	- USB/UART interfaces
+	- Very Old Chipset
+ - IEBus Transceiver: Renesas UPD72042B
+	- IEBus is used to carry GA-NET (audio control network) in this vehicle 
+	- Not much "aftermarket" info is out there on IEBus or GA-NET
+ - CAN Transceiver: NXP TJA1041T
+	- CAN 2.0B 1MBit/sec
+	- Local wake-up input
+
 ## AcuraLink Control Unit
 Honda Part Number: 39820-TL2-A610-M1  
 Also Marked: GEX-7807 (Pioneer internal PN?)  
