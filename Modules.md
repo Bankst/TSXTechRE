@@ -217,3 +217,40 @@ Pinout:
 	- Notes
 		- Marked as 64117760
 		- Seems to be used in LOTS of Honda/Acura smart modules
+
+## Climate Control Unit
+Honda Part Number: 79600-TL2-A41 (A01 for 09-10 MYs)  
+Mfg: Unknown  
+Model # N/A  
+
+Two PCBAs comprise the unit, one mounted horizontally in the white shell, which contains all the electronics, and the other vertically against the button assembly that is only passives, LEDs, and switches.
+They interconnect via a bladed board-to-board.
+
+
+### Photos
+TODO  
+<!--- TODO: add internal images --->
+
+### External Connectors
+#### Connecter <A?>
+Color: Grey  
+Pin Count: 12 (2 Rows)  
+
+<details>
+	<!--- TODO: add image --->
+	<summary>FSM Pinout Image</summary>
+</details><br>
+#### Connector <B?>
+
+Color: Grey  
+Pin Count: 28 (2 Rows)  
+
+<details>
+	<!--- TODO: add image --->
+	<summary>FSM Pinout Image</summary>
+</details><br>
+
+### ICs
+- Main MCU: Stanley TL0V-AMP
+  - Pin Count: 100
+  - Unidentified
